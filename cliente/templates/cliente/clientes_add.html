@@ -32,7 +32,7 @@
                         <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'productos_list' %}">Carrito</a>
+                        <a class="nav-link" href="{% url 'productos_list' %}">Pedido</a>
                     </li>
                     
                 </ul>
@@ -85,14 +85,10 @@
                 {% endif %}
             </div>
         </div>
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script>
-                $(document).ready(function(){
-                    $("#idMensajes").delay(2000).fadeOut("slow");
-                });
-        </script>
-        <script src="{% static 'cliente/js/scripts.js' %}" defer></script>
-
     </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'cliente/js/scripts.js' %}" defer></script> 
+</html>
 </html>

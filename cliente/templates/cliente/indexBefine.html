@@ -32,12 +32,24 @@
                     <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'productos_list' %}">Carrito</a>
+                    <a class="nav-link" href="{% url 'productos_list' %}">Pedido</a>
                 </li>
-                
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'crud' %}">Clientes</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Cerrar Sesión</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
+
     <br>
     <h1>
         <button type="button" class="btn-custom" data-toggle="modal" data-target="#exampleModal">
@@ -93,7 +105,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Suscríbete a nuestro newsletter</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Suscribete a Befine</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

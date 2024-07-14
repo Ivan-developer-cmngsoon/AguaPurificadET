@@ -5,7 +5,7 @@ h1, h2, h5, p, .navbar-brand, .nav-link, .btn, label {
 
 /* Cambia el color del texto a blanco */
 form label,td {
-    color: #ffffff !important;
+    color: #ffffff;
 }
 
 .nav-link {
@@ -113,4 +113,15 @@ body {
 .modal-footer {
     background-color: #003366; /* Puedes cambiar este color por el que prefieras */
     border-top: 1px solid #6c757d; /* Opcional: cambiar el color del borde superior */
+}
+
+/*clientes add */
+.container {
+    background-color: #003366;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+}
+.crud-container label {
+    color: white;
 }
