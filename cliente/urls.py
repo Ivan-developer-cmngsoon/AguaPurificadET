@@ -19,4 +19,5 @@ urlpatterns = [
     path('recarga/', views.recarga, name='recarga'),
     path('login/', views.user_login, name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+     path('checkout/', views.checkout, name='checkout'),  # Añadir URL para el checkout
 ]

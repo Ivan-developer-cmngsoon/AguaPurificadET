@@ -46,9 +46,39 @@
                     <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
                 </li>
                 {% endif %}
+
+                <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#cartModal">
+                    <i class="fas fa-shopping-cart"></i> Carrito
+                </a>
+            </li>
             </ul>
         </div>
     </nav>
+
+    <!-- Modal del Carrito -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Aquí se mostrará el contenido del carrito -->
+                    <div id="cartItems">
+                        <!-- Items del carrito irán aquí -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <a href="{% url 'checkout' %}" class="btn btn-primary">Proceder al Pago</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <br>
     <h1>
@@ -163,5 +193,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{% static 'cliente/js/scripts.js' %}" defer></script> 
+    <script src="{% static 'cliente/js/cart.js' %}" defer></script>  
 </body>
 </html>

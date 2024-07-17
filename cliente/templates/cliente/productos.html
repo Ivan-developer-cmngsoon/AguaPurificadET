@@ -1,13 +1,12 @@
 <!doctype html>
 <html lang="es">
 <head>
-    {% load static %} <!-- funcione python -->
+    {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Agua Befine</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'cliente/css/estilos.css' %}"> <!-- nueva ruta con django -->
-    
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -35,136 +34,130 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'productos_list' %}">Pedido</a>
                 </li>
-                
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'crud' %}">Clientes</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#cartModal">
+                        <i class="fas fa-shopping-cart"></i> Carrito
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
+    
     <br>
-
     <h1><!-- modal -->
         <button type="button" class="btn-custom" data-toggle="modal" data-target="#exampleModal">
-            Registrate! 
+            Registrate!
         </button>
     </h1><!-- navbar -->
-    
-<!-- {% static 'cliente/css/estilos.css' %}  para reutilizar codigo -->
-    <!-- {% static 'cliente/img/pack_elec.jpg' %} para reutilizar codigo -->
-
-
-
     <div class="d-flex flex-wrap justify-content-around"> 
-        <div class="card">
-            
-            <img src="{% static 'cliente/img/valor_recarga.jpg' %}" class="card-img-top" alt="Recarga de Agua">
-            <div class="card-body">
-                <center>
-                    <h5 class="card-title">Recarga de Agua</h5>
-                    <p class="card-text">Recarga para botellones</p>
-                    <a href="{% url 'productos_list' %}" class="btn btn-primary">Comprar</a>
-                </center>
+        <div class="row">
+            <!-- Producto 1 -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card">
+                    <img src="{% static 'cliente/img/valor_recarga.jpg' %}" class="card-img-top img-fluid" alt="Recarga de Agua">
+                    <div class="card-body">
+                        <center>
+                            <h5 class="card-title">Recarga de Agua</h5>
+                            <p class="card-text">Recarga para botellones</p>
+                            <p class="card-text">Precio: $500</p>
+                            <button class="btn btn-primary add-to-cart" data-id="1" data-name="Recarga de Agua" data-price="500">
+                                Agregar al Carrito
+                            </button>
+                        </center>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <div class="card">
-            <img src="{% static 'cliente/img/promo_b.jpg' %}" class="card-img-top" alt="Botellón de Agua"> 
-            <div class="card-body">
-                <center>
-                    <h5 class="card-title">Botellón de Agua</h5>
-                    <p class="card-text">Capacidad: 20 litros</p>
-                    <a href="{% url 'productos_list' %}" class="btn btn-primary">Comprar</a>
-                </center>
+            <!-- Producto 2 -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card">
+                    <img src="{% static 'cliente/img/promo_b.jpg' %}" class="card-img-top img-fluid" alt="Botellón de Agua">
+                    <div class="card-body">
+                        <center>
+                            <h5 class="card-title">Botellón de Agua</h5>
+                            <p class="card-text">Capacidad: 20 litros</p>
+                            <p class="card-text">Precio: $800</p>
+                            <button class="btn btn-primary add-to-cart" data-id="2" data-name="Botellón de Agua" data-price="800">
+                                Agregar al Carrito
+                            </button>
+                        </center>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <div class="card">
-            <img src="{% static 'cliente/img/pack_inicial.jpg' %}" class="card-img-top" alt="Dispensador de Agua">
-            <div class="card-body">
-                <center>
-                    <h5 class="card-title">Dispensador de Agua</h5>
-                    <p class="card-text">Dispensador eléctrico</p>
-                    <a href="{% url 'productos_list' %}" class="btn btn-primary">Comprar</a>
-                </center>
+            <!-- Producto 3 -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card">
+                    <img src="{% static 'cliente/img/pack_inicial.jpg' %}" class="card-img-top img-fluid" alt="Dispensador de Agua">
+                    <div class="card-body">
+                        <center>
+                            <h5 class="card-title">Dispensador de Agua</h5>
+                            <p class="card-text">Dispensador eléctrico</p>
+                            <p class="card-text">Precio: $1200</p>
+                            <button class="btn btn-primary add-to-cart" data-id="3" data-name="Dispensador de Agua" data-price="1200">
+                                Agregar al Carrito
+                            </button>
+                        </center>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <div class="card">
-            <img src="{% static 'cliente/img/pack_elec.jpg' %}" class="card-img-top" alt="Pack de Agua">
-            <div class="card-body">
-                <center>
-                    <h5 class="card-title">Pack de Agua</h5>
-                    <p class="card-text">Pack de 6 botellas de 1 litro</p>
-                    <a href="{% url 'productos_list' %}" class="btn btn-primary">Comprar</a>
-                </center>
-            </div>
-        </div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Suscríbete a nuestro newsletter</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="subscriptionForm" novalidate>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Correo electrónico</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="ejemplo@gmail.com" required>
-                        <div class="invalid-feedback">
-                            Por favor, ingresa un correo electrónico válido.
-                        </div>
+            <!-- Producto 4 -->
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card">
+                    <img src="{% static 'cliente/img/pack_elec.jpg' %}" class="card-img-top img-fluid" alt="Pack de Agua">
+                    <div class="card-body">
+                        <center>
+                            <h5 class="card-title">Pack de Agua</h5>
+                            <p class="card-text">Pack de 6 botellas de 1 litro</p>
+                            <p class="card-text">Precio: $300</p>
+                            <button class="btn btn-primary add-to-cart" data-id="4" data-name="Pack de Agua" data-price="300">
+                                Agregar al Carrito
+                            </button>
+                        </center>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInputPassword" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="exampleFormControlInputPassword" placeholder="Contraseña" required>
-                        <div class="invalid-feedback">
-                            Por favor, ingresa una contraseña.
-                        </div>
-                    </div>
-                    <button type="button" id="togglePassword" class="btn btn-secondary">Mostrar/Ocultar Contraseña</button>
-                    
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput2" class="form-label">Nombre completo</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Nombre completo" required>
-                        <div class="invalid-feedback">
-                            Por favor, ingresa tu nombre completo.
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput3" class="form-label">Teléfono</label>
-                        <input type="tel" class="form-control" id="exampleFormControlInput3" placeholder="Teléfono" required>
-                        <div class="invalid-feedback">
-                            Por favor, ingresa un número de teléfono válido.
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput4" class="form-label">Dirección</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput4" placeholder="Dirección" required>
-                        <div class="invalid-feedback">
-                            Por favor, ingresa tu dirección.
-                        </div>
-                    </div>
-                    
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </div>
-                    
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+    <!-- Modal del Carrito -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Aquí se mostrará el contenido del carrito -->
+                    <div id="cartItems">
+                        <!-- Items del carrito irán aquí -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <a href="{% url 'checkout' %}" class="btn btn-primary">Proceder al Pago</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{% static 'cliente/js/scripts.js' %}" defer></script>
+    <script src="{% static 'cliente/js/cart.js' %}" defer></script> <!-- carrito -->
 </body>
 </html>
