@@ -47,3 +47,11 @@ class Recarga(models.Model):
 
     def __str__(self):
         return f'Recarga {self.id} - {self.cliente.nombre}'
+
+
+class Reseña(models.Model):
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='reseñas')
+    nombre = models.CharField(max_length=100)
+    comentario = models.TextField()
+    puntuacion = models.IntegerField()
+    fecha = models.DateTimeField(auto_now_add=True)

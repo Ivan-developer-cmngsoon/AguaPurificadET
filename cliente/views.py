@@ -65,7 +65,7 @@ def productos(request):
     productos = Producto.objects.all()
     context = {'productos': productos}
     return render(request, 'cliente/productos.html', context)
-
+@login_required
 def productos_list(request):
     productos = Producto.objects.all()
     context = {'productos': productos}
@@ -138,32 +138,13 @@ def user_login(request):
 
 #carrito
 
-@login_required
+    
 def checkout(request):
     if request.method == 'POST':
-        nombre = request.POST.get('name')
-        direccion = request.POST.get('address')
-        metodo_pago = request.POST.get('payment')
-        
-        # Suponiendo que el cliente autenticado está realizando el pedido
-        cliente = Cliente.objects.get(email=request.user.email)  # Ajusta esto según tu modelo de autenticación
-
-        # Obtener los elementos del carrito del front-end (supuesto que vienen en formato JSON)
-        cart_items = json.loads(request.POST.get('cart_items'))
-        
-        # Crear el pedido
-        total = sum(item['price'] * item['quantity'] for item in cart_items)
-        pedido = Pedido.objects.create(cliente=cliente, total=total)
-
-        # Crear detalles del pedido
-        for item in cart_items:
-            producto = Producto.objects.get(id=item['id'])
-            DetallePedido.objects.create(pedido=pedido, producto=producto, cantidad=item['quantity'], subtotal=item['price'] * item['quantity'])
-
-        # Mensaje de confirmación ficticio
-        mensaje = f"Pedido realizado por {nombre} con dirección {direccion} usando {metodo_pago}."
-
-        # Redirigir a la página principal con un mensaje
-        return redirect('index')
+        # Aquí puedes agregar la lógica para procesar el pago
+        # Limpiar el carrito después del pago
+        request.session['cart'] = []
+        return redirect('indexBefine')  # Redirige a la página de inicio después del pago
     else:
-        return render(request, 'cliente/checkout.html')
+        cart_items = request.session.get('cart', [])
+        return render(request, 'cliente/checkout.html', {'cart_items': cart_items})
